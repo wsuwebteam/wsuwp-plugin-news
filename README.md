@@ -1,1 +1,1 @@
-wsuwp-plugin-news
+# wsuwp-plugin-news
