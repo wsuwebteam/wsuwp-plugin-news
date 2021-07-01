@@ -1,21 +1,21 @@
 <?php namespace WSUWP\Plugin\News\PostTypes;
 
 
-class News_Article {
+class Press_Release {
 
-	private static $slug = 'news_article';
+	private static $slug = 'press_release';
 
     private static $attributes = array(
         'labels' => array(
-            'name' => 'News Articles',
-            'singular_name' => 'News Article'
+            'name' => 'Press Releases',
+            'singular_name' => 'Press Release'
         ),
         'description' => '',
         'public' => true,
         'has_archive' => true,
         'show_in_rest' => true,
         'menu_position' => 4,
-        'menu_icon' => 'dashicons-media-document',
+        'menu_icon' => 'dashicons-media-text',
         'supports' => array(
             'title',
             'editor',
@@ -29,7 +29,7 @@ class News_Article {
         'taxonomies' => array(
             'post_tag',
             'category',
-            'author'
+            'media_contact'
         )
     );
 
@@ -62,4 +62,4 @@ class News_Article {
 
 }
 
-(new News_Article)->init();
+(new Press_Release)->init();

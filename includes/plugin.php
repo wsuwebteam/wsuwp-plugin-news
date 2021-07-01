@@ -37,6 +37,7 @@ class Plugin {
         require_once __DIR__ . '/remove-post-type.php';
         require_once __DIR__ . '/news-templates-page.php';
         require_once __DIR__ . '/post-types/news-article.php';
+        require_once __DIR__ . '/post-types/press-release.php';
         require_once __DIR__ . '/post-types/announcement.php';
         require_once __DIR__ . '/post-types/curated-news.php';
         require_once __DIR__ . '/post-types//news-feed.php';

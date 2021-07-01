@@ -3,14 +3,18 @@
 
 class Taxonomies {
 
-	public function init() {
-
-        add_action( 'init', __CLASS__ . '::register_taxonomies' );
-
-	}
-
-
 	public static function register_taxonomies() {
+
+        $authors = array(
+            'labels' => array(
+                'name' => 'Authors',
+                'singular_name' => 'Author'
+            ),
+            'description' => '',
+            'hierarchical' => false,
+            'public' => true,
+            'show_in_rest' => true
+        );
 
         $media_contacts = array(
             'labels' => array(
@@ -24,7 +28,14 @@ class Taxonomies {
         );
 
         // register taxonomies
-        register_taxonomy( 'media_contact', 'news_article', $media_contacts );
+        register_taxonomy( 'author', 'news_article', $authors );
+        register_taxonomy( 'media_contact', 'press_release', $media_contacts );
+
+	}
+
+    public function init() {
+
+        add_action( 'init', __CLASS__ . '::register_taxonomies' );
 
 	}
 
