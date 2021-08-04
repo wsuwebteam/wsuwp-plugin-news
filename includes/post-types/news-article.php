@@ -51,12 +51,33 @@ class News_Article {
 
 	}
 
+	public static function add_post_type_to_archive( $query ) {
+
+		if ( $query->is_main_query() && ! is_admin() && ( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) ) {
+
+			$query_post_types = $query->get( 'post_type' );
+
+			if ( ! is_array( $query_post_types ) ) {
+
+				$query_post_types = array( $query_post_types );
+
+			}
+
+			$query_post_types[] = self::$slug;
+
+			$query->set( 'post_type', $query_post_types );
+
+		}
+	}
+
 	public function init() {
 
 		add_action( 'init', __CLASS__ . '::register_post_type' );
 
 		// Converts the Structure Tags in our permalink.
 		add_filter( 'post_type_link', __CLASS__ . '::post_type_link', 10, 2 );
+
+		add_action( 'pre_get_posts', array( __CLASS__ , 'add_post_type_to_archive' ) );
 
 	}
 
