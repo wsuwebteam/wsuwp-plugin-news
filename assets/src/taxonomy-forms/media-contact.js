@@ -3,7 +3,7 @@ import { isEmpty, omit } from 'lodash';
 import { useState, useEffect } from '@wordpress/element';
 
 const MediaContactForm = forwardRef(function(props, ref) {
-	const [ metaData, setMetaData ] = useState({});
+	const [ metaData, setMetaData ] = useState(props.defaultValue);
 
 	const updateMetaData = ( event ) => {
 		const name = event.target.name;

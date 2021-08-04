@@ -66,7 +66,7 @@ class CustomTermSelector extends Component {
 			adding: false,
 			formName: '',
 			formDescription: '',
-			formMeta: '',
+			formMeta: {},
 			formParent: '',
 			showForm: false,
 			filterValue: '',
@@ -146,7 +146,7 @@ class CustomTermSelector extends Component {
 				formName: '',
 				formParent: '',
 				formDescription: '',
-				formMeta: '',
+				formMeta: {},
 			} );
 			this.metaFields.current.clearMetaData();
 			this.onToggleForm(); // close form
@@ -209,7 +209,7 @@ class CustomTermSelector extends Component {
 					formName: '',
 					formParent: '',
 					formDescription: '',
-					formMeta: '',
+					formMeta: {},
 					availableTerms: newAvailableTerms,
 					availableTermsTree: this.sortBySelected(
 						buildTermsTree( newAvailableTerms )
@@ -552,7 +552,7 @@ class CustomTermSelector extends Component {
 							onChange={ this.onChangeFormDescription }
 						/>
 
-						<MetaFields ref={ this.metaFields } onChange={ this.onChangeFormMeta } instanceId={ instanceId } />
+						<MetaFields ref={ this.metaFields } onChange={ this.onChangeFormMeta } instanceId={ instanceId } defaultValue={ this.state.formMeta } />
 
 						{ !! availableTerms.length && taxonomy.hierarchical && (
 							<TreeSelect
