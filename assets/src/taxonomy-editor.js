@@ -1,5 +1,4 @@
 import CustomTermSelector from './custom-term-selector';
-import './taxonomy-editor.scss';
 
 function taxonomyEditor(OriginalComponent) {
 	const supportedTaxonomies = ['media_contact'];
