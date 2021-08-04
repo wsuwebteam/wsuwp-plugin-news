@@ -31,6 +31,7 @@ import { addQueryArgs } from '@wordpress/url';
  * Internal dependencies
  */
 import { buildTermsTree } from './utils/terms';
+import * as taxonomyMetas from './taxonomy-forms';
 
 /**
  * Module Constants
@@ -50,6 +51,8 @@ class CustomTermSelector extends Component {
 		this.findTerm = this.findTerm.bind( this );
 		this.onChange = this.onChange.bind( this );
 		this.onChangeFormName = this.onChangeFormName.bind( this );
+		this.onChangeFormDescription = this.onChangeFormDescription.bind( this );
+		this.onChangeFormMeta = this.onChangeFormMeta.bind( this );
 		this.onChangeFormParent = this.onChangeFormParent.bind( this );
 		this.onAddTerm = this.onAddTerm.bind( this );
 		this.onToggleForm = this.onToggleForm.bind( this );
@@ -61,11 +64,14 @@ class CustomTermSelector extends Component {
 			availableTerms: [],
 			adding: false,
 			formName: '',
+			formDescription: '',
+			formMeta: '',
 			formParent: '',
 			showForm: false,
 			filterValue: '',
 			filteredTermsTree: [],
 		};
+		this.metaFields = React.createRef();
 	}
 
 	onChange( termId ) {
@@ -81,6 +87,16 @@ class CustomTermSelector extends Component {
 		const newValue =
 			event.target.value.trim() === '' ? '' : event.target.value;
 		this.setState( { formName: newValue } );
+	}
+
+	onChangeFormDescription( event ) {
+		const newValue =
+			event.target.value.trim() === '' ? '' : event.target.value;
+		this.setState( { formDescription: newValue } );
+	}
+
+	onChangeFormMeta( metadata ) {
+		this.setState( { formMeta: metadata } );
 	}
 
 	onChangeFormParent( newParent ) {
@@ -106,7 +122,7 @@ class CustomTermSelector extends Component {
 	onAddTerm( event ) {
 		event.preventDefault();
 		const { onUpdateTerms, taxonomy, terms, slug } = this.props;
-		const { formName, formParent, adding, availableTerms } = this.state;
+		const { formName, formDescription, formMeta, formParent, adding, availableTerms } = this.state;
 		if ( formName === '' || adding ) {
 			return;
 		}
@@ -128,6 +144,8 @@ class CustomTermSelector extends Component {
 			this.setState( {
 				formName: '',
 				formParent: '',
+				formDescription: '',
+				formMeta: '',
 			} );
 			return;
 		}
@@ -141,10 +159,8 @@ class CustomTermSelector extends Component {
 			data: {
 				name: formName,
 				parent: formParent ? formParent : undefined,
-				meta: {
-					organization: 'my org',
-					email: 'fake@you.com'
-				}
+				description: formDescription ? formDescription : undefined,
+				meta: formMeta ? formMeta : undefined,
 			},
 		} );
 		// Tries to create a term or fetch it if it already exists
@@ -189,11 +205,14 @@ class CustomTermSelector extends Component {
 					adding: false,
 					formName: '',
 					formParent: '',
+					formDescription: '',
+					formMeta: '',
 					availableTerms: newAvailableTerms,
 					availableTermsTree: this.sortBySelected(
 						buildTermsTree( newAvailableTerms )
 					),
 				} );
+				this.metaFields.current.clearMetaData();
 				onUpdateTerms( [ ...terms, term.id ], taxonomy.rest_base );
 			},
 			( xhr ) => {
@@ -412,6 +431,7 @@ class CustomTermSelector extends Component {
 			availableTerms,
 			filteredTermsTree,
 			formName,
+			formDescription,
 			formParent,
 			loading,
 			showForm,
@@ -457,6 +477,7 @@ class CustomTermSelector extends Component {
 			__( 'Terms' )
 		);
 		const showFilter = availableTerms.length >= MIN_TERMS_COUNT_FOR_FILTER;
+		const MetaFields = taxonomyMetas[taxonomy.slug];
 
 		return [
 			showFilter && (
@@ -512,7 +533,23 @@ class CustomTermSelector extends Component {
 						onChange={ this.onChangeFormName }
 						required
 					/>
-					{ !! availableTerms.length && (
+
+					<label
+						htmlFor={ 'editor-post-taxonomies__hierarchical-terms-description-' + instanceId }
+						className="editor-post-taxonomies__hierarchical-terms-label"
+					>
+						Description
+					</label>
+					<textarea
+						id={ 'editor-post-taxonomies__hierarchical-terms-description-' + instanceId }
+						className="editor-post-taxonomies__hierarchical-terms-input"
+						value={ formDescription }
+						onChange={ this.onChangeFormDescription }
+					/>
+
+					<MetaFields ref={ this.metaFields } onChange={ this.onChangeFormMeta } instanceId={ instanceId } />
+
+					{ !! availableTerms.length && taxonomy.hierarchical && (
 						<TreeSelect
 							label={ parentSelectLabel }
 							noOptionLabel={ noParentOption }
