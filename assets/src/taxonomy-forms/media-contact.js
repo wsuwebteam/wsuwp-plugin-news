@@ -1,5 +1,5 @@
 import { forwardRef, useRef, useImperativeHandle  } from 'react';
-import { isEmpty } from 'lodash';
+import { isEmpty, omit } from 'lodash';
 import { useState, useEffect } from '@wordpress/element';
 
 const MediaContactForm = forwardRef(function(props, ref) {
@@ -9,10 +9,14 @@ const MediaContactForm = forwardRef(function(props, ref) {
 		const name = event.target.name;
 		const value = event.target.value;
 
-		setMetaData( (prevState) => ({
-			...prevState,
-			[name]: value
-		}));
+		if(value === ''){
+			setMetaData( (prevState) => ( omit(prevState, name) )); // remove the key to avoid issues with wp api
+		} else{
+			setMetaData( (prevState) => ({
+				...prevState,
+				[name]: value
+			}));
+		}
 	}
 
 	useEffect(() => {
