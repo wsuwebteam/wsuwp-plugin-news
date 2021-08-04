@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WSUWP News
+ * Plugin Name: (BETA) WSUWP News
  * Plugin URI: https://github.com/wsuwebteam/wsuwp-plugin-news
  * Description: Post Types for the WSU Insider
  * Version: 0.0.1
