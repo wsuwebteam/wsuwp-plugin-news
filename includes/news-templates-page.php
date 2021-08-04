@@ -1,20 +1,18 @@
 <?php namespace WSUWP\Plugin\News;
 
-
 class News_Templates_Page {
 
 	public static function register_page() {
 
-        add_menu_page(
-            'News Templates',
-            'News Templates',
-            'manage_options',
-            'news_templates',
-            __CLASS__ . '::the_page',
-            'dashicons-welcome-widgets-menus',
-            9
-        );
-
+		add_menu_page(
+			'News Templates',
+			'News Templates',
+			'manage_options',
+			'news_templates',
+			__CLASS__ . '::the_page',
+			'dashicons-welcome-widgets-menus',
+			9
+		);
 	}
 
 	public static function the_page() {
@@ -23,7 +21,7 @@ class News_Templates_Page {
 
 	}
 
-    public function init() {
+	public static function init() {
 
 		if ( is_admin() ) {
 
@@ -35,4 +33,4 @@ class News_Templates_Page {
 
 }
 
-(new News_Templates_Page)->init();
+News_Templates_Page::init();

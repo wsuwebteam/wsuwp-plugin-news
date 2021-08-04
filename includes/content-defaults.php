@@ -1,13 +1,12 @@
 <?php namespace WSUWP\Plugin\News;
 
-
 class Content_Defaults {
 
-	public static function get_content_from_latest_post($slug){
+	public static function get_content_from_latest_post( $slug ) {
 
 		$args = array(
 			'numberposts' => 1,
-			'post_type' => $slug,
+			'post_type'   => $slug,
 		);
 
 		$latest_post = array_shift( wp_get_recent_posts( $args ) );
@@ -18,27 +17,27 @@ class Content_Defaults {
 
 	}
 
-	public static function set_default_content($content, $post) {
+	public static function set_default_content( $content, $post ) {
 
-		switch( $post->post_type ) {
+		switch ( $post->post_type ) {
 			case 'news_feed':
-				$content = self::get_content_from_latest_post('news_feed');
-			break;
+				$content = self::get_content_from_latest_post( 'news_feed' );
+				break;
 			case 'curated_news':
-				$content = self::get_content_from_latest_post('curated_news');
-			break;
+				$content = self::get_content_from_latest_post( 'curated_news' );
+				break;
 		}
 
 		return $content;
 
 	}
 
-    public function init() {
+	public static function init() {
 
-        add_filter( 'default_content', __CLASS__ . '::set_default_content', 10, 2 );
+		add_filter( 'default_content', __CLASS__ . '::set_default_content', 10, 2 );
 
 	}
 
 }
 
-(new Content_Defaults)->init();
+Content_Defaults::init();
