@@ -69,7 +69,6 @@ class News_Article {
 		}
 	}
 
-	public function init() {
 	public static function init() {
 
 		add_action( 'init', __CLASS__ . '::register_post_type' );
@@ -77,7 +76,7 @@ class News_Article {
 		// Converts the Structure Tags in our permalink.
 		add_filter( 'post_type_link', __CLASS__ . '::post_type_link', 10, 2 );
 
-		add_action( 'pre_get_posts', array( __CLASS__ , 'add_post_type_to_archive' ) );
+		add_action( 'pre_get_posts', array( __CLASS__, 'add_post_type_to_archive' ) );
 
 	}
 
