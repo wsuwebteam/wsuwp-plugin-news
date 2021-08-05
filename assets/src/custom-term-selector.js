@@ -38,7 +38,7 @@ import * as taxonomyMetas from './taxonomy-forms';
  * Module Constants
  */
 const DEFAULT_QUERY = {
-	per_page: 10,
+	per_page: 100,
 	orderby: 'name',
 	order: 'asc',
 	_fields: 'id,name,parent',
