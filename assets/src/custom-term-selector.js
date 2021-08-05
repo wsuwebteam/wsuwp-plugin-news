@@ -1,3 +1,5 @@
+// TODO: Refactor the filter feature to be a real search. The current filter will only work up to 100 terms.
+
 /**
  * External dependencies
  */
