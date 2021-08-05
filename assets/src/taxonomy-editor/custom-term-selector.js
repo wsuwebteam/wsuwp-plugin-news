@@ -34,7 +34,7 @@ import { addQueryArgs } from '@wordpress/url';
  * Internal dependencies
  */
 import { buildTermsTree } from './utils/terms';
-import * as taxonomyMetas from './taxonomy-forms';
+import * as taxonomyMetas from './metadata-forms';
 
 /**
  * Module Constants
