@@ -21,6 +21,7 @@ import {
 	withSpokenMessages,
 	withFilters,
 	Button,
+	Modal,
 } from '@wordpress/components';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { withInstanceId, compose } from '@wordpress/compose';
@@ -37,7 +38,7 @@ import * as taxonomyMetas from './taxonomy-forms';
  * Module Constants
  */
 const DEFAULT_QUERY = {
-	per_page: 100,
+	per_page: 10,
 	orderby: 'name',
 	order: 'asc',
 	_fields: 'id,name,parent',
@@ -65,7 +66,7 @@ class CustomTermSelector extends Component {
 			adding: false,
 			formName: '',
 			formDescription: '',
-			formMeta: '',
+			formMeta: {},
 			formParent: '',
 			showForm: false,
 			filterValue: '',
@@ -145,8 +146,10 @@ class CustomTermSelector extends Component {
 				formName: '',
 				formParent: '',
 				formDescription: '',
-				formMeta: '',
+				formMeta: {},
 			} );
+			this.metaFields.current.clearMetaData();
+			this.onToggleForm(); // close form
 			return;
 		}
 
@@ -206,13 +209,14 @@ class CustomTermSelector extends Component {
 					formName: '',
 					formParent: '',
 					formDescription: '',
-					formMeta: '',
+					formMeta: {},
 					availableTerms: newAvailableTerms,
 					availableTermsTree: this.sortBySelected(
 						buildTermsTree( newAvailableTerms )
 					),
 				} );
 				this.metaFields.current.clearMetaData();
+				this.onToggleForm(); // close form
 				onUpdateTerms( [ ...terms, term.id ], taxonomy.rest_base );
 			},
 			( xhr ) => {
@@ -518,54 +522,57 @@ class CustomTermSelector extends Component {
 				</Button>
 			),
 			showForm && (
-				<form onSubmit={ this.onAddTerm } key="hierarchical-terms-form">
-					<label
-						htmlFor={ inputId }
-						className="editor-post-taxonomies__hierarchical-terms-label"
-					>
-						{ newTermLabel }
-					</label>
-					<input
-						type="text"
-						id={ inputId }
-						className="editor-post-taxonomies__hierarchical-terms-input"
-						value={ formName }
-						onChange={ this.onChangeFormName }
-						required
-					/>
-
-					<label
-						htmlFor={ 'editor-post-taxonomies__hierarchical-terms-description-' + instanceId }
-						className="editor-post-taxonomies__hierarchical-terms-label"
-					>
-						Description
-					</label>
-					<textarea
-						id={ 'editor-post-taxonomies__hierarchical-terms-description-' + instanceId }
-						className="editor-post-taxonomies__hierarchical-terms-input"
-						value={ formDescription }
-						onChange={ this.onChangeFormDescription }
-					/>
-
-					<MetaFields ref={ this.metaFields } onChange={ this.onChangeFormMeta } instanceId={ instanceId } />
-
-					{ !! availableTerms.length && taxonomy.hierarchical && (
-						<TreeSelect
-							label={ parentSelectLabel }
-							noOptionLabel={ noParentOption }
-							onChange={ this.onChangeFormParent }
-							selectedId={ formParent }
-							tree={ availableTermsTree }
+				<Modal key="hierarchical-terms-form" title={ 'Add New ' + taxonomy.labels.singular_name } onRequestClose={ this.onToggleForm }>
+					<form onSubmit={ this.onAddTerm }>
+						<label
+							htmlFor={ inputId }
+							className="editor-post-taxonomies__hierarchical-terms-label"
+						>
+							{ newTermLabel }
+						</label>
+						<input
+							type="text"
+							id={ inputId }
+							className="editor-post-taxonomies__hierarchical-terms-input"
+							value={ formName }
+							onChange={ this.onChangeFormName }
+							required
 						/>
-					) }
-					<Button
-						isSecondary
-						type="submit"
-						className="editor-post-taxonomies__hierarchical-terms-submit"
-					>
-						{ newTermSubmitLabel }
-					</Button>
-				</form>
+
+						<label
+							htmlFor={ 'editor-post-taxonomies__hierarchical-terms-description-' + instanceId }
+							className="editor-post-taxonomies__hierarchical-terms-label"
+						>
+							Description
+						</label>
+						<textarea
+							id={ 'editor-post-taxonomies__hierarchical-terms-description-' + instanceId }
+							className="editor-post-taxonomies__hierarchical-terms-input"
+							value={ formDescription }
+							onChange={ this.onChangeFormDescription }
+						/>
+
+						<MetaFields ref={ this.metaFields } onChange={ this.onChangeFormMeta } instanceId={ instanceId } defaultValue={ this.state.formMeta } />
+
+						{ !! availableTerms.length && taxonomy.hierarchical && (
+							<TreeSelect
+								className="wsu-custom-term-selector__tree-select"
+								label={ parentSelectLabel }
+								noOptionLabel={ noParentOption }
+								onChange={ this.onChangeFormParent }
+								selectedId={ formParent }
+								tree={ availableTermsTree }
+							/>
+						) }
+						<Button
+							isSecondary
+							type="submit"
+							className="editor-post-taxonomies__hierarchical-terms-submit wsu-custom-term-selector__hierarchical-terms-submit"
+						>
+							{ newTermSubmitLabel }
+						</Button>
+					</form>
+				</Modal>
 			),
 		];
 	}

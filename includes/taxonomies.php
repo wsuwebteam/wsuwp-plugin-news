@@ -69,8 +69,17 @@ class Taxonomies {
 	public static function register_taxonomies() {
 		$authors = array(
 			'labels'       => array(
-				'name'          => 'Authors',
-				'singular_name' => 'Author',
+				'name'              => 'Authors',
+				'singular_name'     => 'Author',
+				'search_items'      => 'Search Authors',
+				'all_items'         => 'All Authors',
+				'parent_item'       => 'Parent Author',
+				'parent_item_colon' => 'Parent Authors:',
+				'edit_item'         => 'Edit Author',
+				'update_item'       => 'Update Author',
+				'add_new_item'      => 'Add New Author',
+				'new_item_name'     => 'New Author Name',
+				'menu_name'         => 'Authors',
 			),
 			'description'  => '',
 			'hierarchical' => false,
@@ -80,8 +89,17 @@ class Taxonomies {
 
 		$media_contacts = array(
 			'labels'       => array(
-				'name'          => 'Media Contacts',
-				'singular_name' => 'Media Contact',
+				'name'              => 'Media Contacts',
+				'singular_name'     => 'Media Contact',
+				'search_items'      => 'Search Media Contacts',
+				'all_items'         => 'All Media Contacts',
+				'parent_item'       => 'Parent Media Contact',
+				'parent_item_colon' => 'Parent Media Contacts:',
+				'edit_item'         => 'Edit Media Contact',
+				'update_item'       => 'Update Media Contact',
+				'add_new_item'      => 'Add New Media Contact',
+				'new_item_name'     => 'New Media Contact Name',
+				'menu_name'         => 'Media Contacts',
 			),
 			'description'  => '',
 			'hierarchical' => false,
