@@ -1,3 +1,5 @@
+// TODO: Refactor the filter feature to be a real search. The current filter will only work up to 100 terms.
+
 /**
  * External dependencies
  */
@@ -32,13 +34,13 @@ import { addQueryArgs } from '@wordpress/url';
  * Internal dependencies
  */
 import { buildTermsTree } from './utils/terms';
-import * as taxonomyMetas from './taxonomy-forms';
+import * as taxonomyMetas from './metadata-forms';
 
 /**
  * Module Constants
  */
 const DEFAULT_QUERY = {
-	per_page: 10,
+	per_page: 100,
 	orderby: 'name',
 	order: 'asc',
 	_fields: 'id,name,parent',

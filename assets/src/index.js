@@ -1,2 +1,2 @@
-import './taxonomy-editor';
+import './taxonomy-editor/';
 import './style.scss'
