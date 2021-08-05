@@ -9,7 +9,9 @@ class Content_Defaults {
 			'post_type'   => $slug,
 		);
 
-		$latest_post = array_shift( wp_get_recent_posts( $args ) );
+		$recent_posts = wp_get_recent_posts( $args );
+
+		$latest_post = array_shift( $recent_posts );
 
 		$content = $latest_post['post_content'];
 

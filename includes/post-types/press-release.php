@@ -22,7 +22,7 @@ class Press_Release {
 			'excerpt',
 		),
 		'rewrite'       => array(
-			'slug'       => '%year%/%monthnum%/%day%',
+			'slug'       => 'press-release/%year%/%monthnum%/%day%',
 			'with_front' => false,
 		),
 		'taxonomies'    => array(
