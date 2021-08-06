@@ -524,8 +524,8 @@ class CustomTermSelector extends Component {
 				</Button>
 			),
 			showForm && (
-				<Modal key="hierarchical-terms-form" title={ 'Add New ' + taxonomy.labels.singular_name } onRequestClose={ this.onToggleForm }>
-					<form onSubmit={ this.onAddTerm }>
+				<Modal key="hierarchical-terms-form-modal" title={ 'Add New ' + taxonomy.labels.singular_name } onRequestClose={ this.onToggleForm }>
+					<form onSubmit={ this.onAddTerm } className="hierarchical-terms-form">
 						<label
 							htmlFor={ inputId }
 							className="editor-post-taxonomies__hierarchical-terms-label"
