@@ -34,8 +34,27 @@ class Content_Defaults {
 
 	}
 
+	public static function set_default_title( $title, $post ) {
+
+		$date_time = new \DateTime();
+		$date      = $date_time->format( 'm-d-Y' );
+
+		switch ( $post->post_type ) {
+			case 'news_feed':
+				$title = 'News Feed — ' . $date;
+				break;
+			case 'curated_news':
+				$title = 'Curated News — ' . $date;
+				break;
+		}
+
+		return $title;
+
+	}
+
 	public static function init() {
 
+		add_filter( 'default_title', __CLASS__ . '::set_default_title', 10, 2 );
 		add_filter( 'default_content', __CLASS__ . '::set_default_content', 10, 2 );
 
 	}
