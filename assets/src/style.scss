@@ -1,1 +1,19 @@
 @import './taxonomy-editor/style.scss';
+
+
+
+/* ==========================================================================
+   Hide post title for specific post types
+   ========================================================================== */
+
+.post-type-curated_news .edit-post-visual-editor__post-title-wrapper,
+.post-type-news_feed .edit-post-visual-editor__post-title-wrapper {
+	margin-top: 3em;
+}
+
+.post-type-curated_news .editor-post-title,
+.post-type-news_feed .editor-post-title {
+	display: none;
+}
+
+/*=====  End of Hide post title for specific post types  ======*/
