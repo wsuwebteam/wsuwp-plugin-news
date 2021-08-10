@@ -2,7 +2,7 @@
 
 class Plugin {
 
-	protected static $version = '0.0.1';
+	protected static $version = '0.0.3';
 
 	public static function get( $property ) {
 		switch ( $property ) {
@@ -28,15 +28,15 @@ class Plugin {
 
 	public static function init() {
 		require_once __DIR__ . '/scripts.php';
-		require_once __DIR__ . '/remove-post-type.php';
-		require_once __DIR__ . '/news-templates-page.php';
-		require_once __DIR__ . '/post-types/news-article.php';
-		require_once __DIR__ . '/post-types/press-release.php';
-		require_once __DIR__ . '/post-types/announcement.php';
-		require_once __DIR__ . '/post-types/curated-news.php';
-		require_once __DIR__ . '/post-types//news-feed.php';
+		//require_once __DIR__ . '/remove-post-type.php';
+		//require_once __DIR__ . '/news-templates-page.php';
+		require_once __DIR__ . '/news-article.php';
+		//require_once __DIR__ . '/post-types/press-release.php';
+		//require_once __DIR__ . '/post-types/announcement.php';
+		//require_once __DIR__ . '/post-types/curated-news.php';
+		//require_once __DIR__ . '/post-types//news-feed.php';
 		require_once __DIR__ . '/taxonomies.php';
-		require_once __DIR__ . '/content-defaults.php';
+		//require_once __DIR__ . '/content-defaults.php';
 	}
 }
 
