@@ -1,0 +1,29 @@
+{
+  "name": "wsuwp-plugin-news",
+  "version": "0.0.1",
+  "description": "Post Types for the WSU Insider",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start assets/src/index.js --output-path=assets/dist/ --dev",
+    "build": "wp-scripts build assets/src/index.js --output-path=assets/dist/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wordpress/components": "^14.2.0",
+    "@wordpress/editor": "^11.0.0"
+  },
+  "devDependencies": {
+    "@wordpress/prettier-config": "^1.1.0",
+    "@wordpress/scripts": "^16.1.4",
+    "prettier": "^2.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsuwebteam/wsuwp-plugin-news.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wsuwebteam/wsuwp-plugin-news/issues"
+  },
+  "homepage": "https://github.com/wsuwebteam/wsuwp-plugin-news#readme"
+}
