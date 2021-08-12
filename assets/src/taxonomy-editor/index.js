@@ -1,7 +1,7 @@
 import CustomTermSelector from './custom-term-selector';
 
 function taxonomyEditor(OriginalComponent) {
-	const supportedTaxonomies = ['media_contact'];
+	const supportedTaxonomies = ['media_contact', 'author'];
 
 	return function (props) {
 		if ( supportedTaxonomies.includes(props.slug) ) {
