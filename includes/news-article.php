@@ -78,6 +78,36 @@ class News_Article {
 
 		add_action( 'pre_get_posts', array( __CLASS__, 'add_post_type_to_archive' ) );
 
+		add_filter( 'wsu_wds_component_post_byline', array( __CLASS__, 'set_author' ) );
+
+	}
+
+
+	public static function set_author( $attrs ) {
+
+		if ( 'news_article' === get_post_type() && taxonomy_exists( 'author' ) ) {
+
+			$attrs['authors'] = array();
+
+			$post_id = get_the_ID();
+
+			$terms = get_the_terms( $post_id, 'author' );
+
+			if ( is_array( $terms ) ) {
+
+				foreach ( $terms as $term ) {
+
+					$author = array(
+						'name' => $term->name,
+						'title' => get_term_meta( $term->term_id, 'organization', true ),
+					);
+
+					$attrs['authors'][] = $author;
+				}
+			}
+		}
+
+		return $attrs;
 	}
 
 }
