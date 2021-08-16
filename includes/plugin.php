@@ -2,7 +2,7 @@
 
 class Plugin {
 
-	protected static $version = '0.0.4';
+	protected static $version = '0.0.5';
 
 	public static function get( $property ) {
 		switch ( $property ) {
@@ -36,6 +36,7 @@ class Plugin {
 		//require_once __DIR__ . '/post-types/curated-news.php';
 		//require_once __DIR__ . '/post-types//news-feed.php';
 		require_once __DIR__ . '/taxonomies.php';
+		require_once __DIR__ . '/taxonomy-media-contacts.php';
 		//require_once __DIR__ . '/content-defaults.php';
 	}
 }

@@ -108,7 +108,7 @@ class Taxonomies {
 		);
 
 		// register taxonomies
-		register_taxonomy( 'author', 'news_article', $authors );
+		register_taxonomy( 'author', array( 'news_article', 'press_release' ) , $authors );
 		register_taxonomy( 'media_contact', 'press_release', $media_contacts );
 		self::add_custom_fields_to_rest_response( self::$custom_fields );
 	}
