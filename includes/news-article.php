@@ -20,6 +20,7 @@ class News_Article {
 			'editor',
 			'thumbnail',
 			'excerpt',
+			'custom-fields',
 		),
 		'rewrite'       => array(
 			'slug'       => 'news',
