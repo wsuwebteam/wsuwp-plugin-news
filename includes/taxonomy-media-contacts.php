@@ -48,7 +48,7 @@ class Taxonomy_Media_Contacts {
 
 					if ( ! empty( $phone ) ) {
 
-						$contact[] = '<a href="tel:+' . esc_attr( $phone ) . '">' . wp_kses_post( $phone ) . '</a';
+						$contact[] = '<a href="tel:+' . esc_attr( $phone ) . '">' . wp_kses_post( $phone ) . '</a>';
 
 					}
 
