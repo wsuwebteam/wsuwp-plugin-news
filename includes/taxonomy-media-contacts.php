@@ -54,7 +54,7 @@ class Taxonomy_Media_Contacts {
 
 					if ( ! empty( $phone ) ) {
 
-						$contact[] = '<a href="mailto:' . esc_url( $email ) . '">' . wp_kses_post( $email ) . '</a>';
+						$contact[] = '<a href="mailto:' . sanitize_email( $email ) . '">' . sanitize_email( $email ) . '</a>';
 
 					}
 
