@@ -48,13 +48,13 @@ class Taxonomy_Media_Contacts {
 
 					if ( ! empty( $phone ) ) {
 
-						$contact[] = '<a href="tel:+' . esc_attr( $phone ) . '">' . wp_kses_post( $phone ) . '</span>';
+						$contact[] = '<a href="tel:+' . esc_attr( $phone ) . '">' . wp_kses_post( $phone ) . '</a';
 
 					}
 
 					if ( ! empty( $phone ) ) {
 
-						$contact[] = '<a href="mailto:' . esc_url( $email ) . '">' . wp_kses_post( $email ) . '</span>';
+						$contact[] = '<a href="mailto:' . esc_url( $email ) . '">' . wp_kses_post( $email ) . '</a>';
 
 					}
 

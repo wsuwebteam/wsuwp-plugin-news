@@ -3,7 +3,7 @@
  * Plugin Name: (BETA) WSUWP News
  * Plugin URI: https://github.com/wsuwebteam/wsuwp-plugin-news
  * Description: Post Types for the WSU Insider
- * Version: 1.0.1.1
+ * Version: 1.0.2
  * Requires PHP: 7.0
  * Author: Washington State University, Dan White
  * Author URI: https://web.wsu.edu/
