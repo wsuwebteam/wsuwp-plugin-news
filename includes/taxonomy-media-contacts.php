@@ -52,7 +52,7 @@ class Taxonomy_Media_Contacts {
 
 					}
 
-					if ( ! empty( $phone ) ) {
+					if ( ! empty( $email ) ) {
 
 						$contact[] = '<a href="mailto:' . sanitize_email( $email ) . '">' . sanitize_email( $email ) . '</a>';
 
