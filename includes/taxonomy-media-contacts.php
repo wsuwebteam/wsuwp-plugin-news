@@ -42,7 +42,7 @@ class Taxonomy_Media_Contacts {
 
 			$media_contact_ids = explode( ',', get_post_meta( $post_id, '_media_contact_order', true  ) );
 
-			if ( empty( $media_contacts ) ) {
+			if ( empty( $media_contact_ids ) ) {
 
 				$media_contacts = $terms;
 
