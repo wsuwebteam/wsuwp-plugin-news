@@ -19,10 +19,10 @@ class Taxonomy_Media_Contacts {
 
 		$media_contacts = implode( ',', $tt_ids );
 
-		delete_post_meta( $object_id, '_media_contact_order' );
+		delete_post_meta( $object_id, 'media_contact_order' );
 
 		// Save in comma-separated string format - may be useful for MySQL sorting via FIND_IN_SET().
-		update_post_meta( $object_id, '_media_contact_order', $media_contacts );
+		update_post_meta( $object_id, 'media_contact_order', $media_contacts );
 
 	}
 
@@ -40,7 +40,7 @@ class Taxonomy_Media_Contacts {
 				return $content;
 			}
 
-			$media_contact_ids = explode( ',', get_post_meta( $post_id, '_media_contact_order', true  ) );
+			$media_contact_ids = explode( ',', get_post_meta( $post_id, 'media_contact_order', true  ) );
 
 			if ( empty( $media_contact_ids ) ) {
 
@@ -54,7 +54,7 @@ class Taxonomy_Media_Contacts {
 
 					foreach ( $terms as $term ) {
 
-						if ( (int) $media_contact_id === $term->term_id ) {
+						if ( intval( $media_contact_id ) === $term->term_id ) {
 
 							$media_contacts[] = $term;
 
