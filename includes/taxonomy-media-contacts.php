@@ -40,13 +40,15 @@ class Taxonomy_Media_Contacts {
 				return $content;
 			}
 
-			$media_contact_ids = explode( ',', get_post_meta( $post_id, 'media_contact_order', true  ) );
+			$media_contact_ids = get_post_meta( $post_id, 'media_contact_order', true );
 
 			if ( empty( $media_contact_ids ) ) {
 
 				$media_contacts = $terms;
 
 			} else {
+
+				$media_contact_ids = explode( ',', $media_contact_ids );
 
 				$media_contacts = array();
 
