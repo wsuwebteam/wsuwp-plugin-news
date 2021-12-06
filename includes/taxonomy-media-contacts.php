@@ -42,16 +42,23 @@ class Taxonomy_Media_Contacts {
 
 			$media_contact_ids = explode( ',', get_post_meta( $post_id, '_media_contact_order', true  ) );
 
-			$media_contacts = array();
+			if ( empty( $media_contacts ) ) {
 
-			foreach ( $media_contact_ids as $media_contact_id ) {
+				$media_contacts = $terms;
 
-				foreach ( $terms as $term ) {
+			} else {
 
-					if ( (int) $media_contact_id === $term->term_id ) {
+				$media_contacts = array();
 
-						$media_contacts[] = $term;
+				foreach ( $media_contact_ids as $media_contact_id ) {
 
+					foreach ( $terms as $term ) {
+
+						if ( (int) $media_contact_id === $term->term_id ) {
+
+							$media_contacts[] = $term;
+
+						}
 					}
 				}
 			}
