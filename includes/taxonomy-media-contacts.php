@@ -56,7 +56,7 @@ class Taxonomy_Media_Contacts {
 
 					foreach ( $terms as $term ) {
 
-						if ( intval( $media_contact_id ) === $term->term_id ) {
+						if ( intval( $media_contact_id ) === $term->term_taxonomy_id ) {
 
 							$media_contacts[] = $term;
 
