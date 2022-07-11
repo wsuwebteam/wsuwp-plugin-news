@@ -40,7 +40,7 @@ import * as taxonomyMetas from './metadata-forms';
  * Module Constants
  */
 const DEFAULT_QUERY = {
-	per_page: 100,
+	per_page: 200,
 	orderby: 'name',
 	order: 'asc',
 	_fields: 'id,name,parent',
