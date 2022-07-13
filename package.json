@@ -1,6 +1,6 @@
 {
   "name": "wsuwp-plugin-news",
-  "version": "0.0.1",
+  "version": "1.0.7",
   "description": "Post Types for the WSU Insider",
   "main": "index.js",
   "scripts": {
