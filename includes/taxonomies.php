@@ -3,7 +3,7 @@
 class Taxonomies {
 
 	private static $custom_fields = array(
-		'media_contact' => array(
+		/*'media_contact' => array(
 			'organization' => array(
 				'label'        => 'Organization/Affiliation',
 				'description'  => '',
@@ -38,8 +38,8 @@ class Taxonomies {
 					),
 				),
 			),
-		),
-		'author'        => array(
+		),*/
+		/*'author'        => array(
 			'organization' => array(
 				'label'        => 'Organization/Affiliation',
 				'description'  => '',
@@ -63,7 +63,7 @@ class Taxonomies {
 					),
 				),
 			),
-		),
+		),*/
 	);
 
 	public static function register_taxonomies() {
@@ -87,7 +87,7 @@ class Taxonomies {
 			'show_in_rest' => true,
 		);
 
-		$media_contacts = array(
+		/*$media_contacts = array(
 			'labels'       => array(
 				'name'              => 'Media Contacts',
 				'singular_name'     => 'Media Contact',
@@ -105,11 +105,11 @@ class Taxonomies {
 			'hierarchical' => false,
 			'public'       => true,
 			'show_in_rest' => true,
-		);
+		);*/
 
 		// register taxonomies
-		register_taxonomy( 'author', array( 'news_article', 'press_release' ) , $authors );
-		register_taxonomy( 'media_contact', 'press_release', $media_contacts );
+		//register_taxonomy( 'author', array( 'news_article', 'press_release' ) , $authors );
+		//register_taxonomy( 'media_contact', 'press_release', $media_contacts );
 		self::add_custom_fields_to_rest_response( self::$custom_fields );
 	}
 
@@ -201,15 +201,15 @@ class Taxonomies {
 
 		add_action( 'init', __CLASS__ . '::register_taxonomies' );
 
-		add_action( 'author_add_form_fields', __CLASS__ . '::taxonomy_custom_add_fields', 10, 2 );
-		add_action( 'media_contact_add_form_fields', __CLASS__ . '::taxonomy_custom_add_fields', 10, 2 );
-		add_action( 'author_edit_form_fields', __CLASS__ . '::taxonomy_custom_edit_fields', 10, 2 );
-		add_action( 'media_contact_edit_form_fields', __CLASS__ . '::taxonomy_custom_edit_fields', 10, 2 );
+		//add_action( 'author_add_form_fields', __CLASS__ . '::taxonomy_custom_add_fields', 10, 2 );
+		//add_action( 'media_contact_add_form_fields', __CLASS__ . '::taxonomy_custom_add_fields', 10, 2 );
+		//add_action( 'author_edit_form_fields', __CLASS__ . '::taxonomy_custom_edit_fields', 10, 2 );
+		//add_action( 'media_contact_edit_form_fields', __CLASS__ . '::taxonomy_custom_edit_fields', 10, 2 );
 
-		add_action( 'edited_author', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
-		add_action( 'edited_media_contact', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
-		add_action( 'created_author', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
-		add_action( 'created_media_contact', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
+		//add_action( 'edited_author', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
+		//add_action( 'edited_media_contact', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
+		//add_action( 'created_author', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
+		//add_action( 'created_media_contact', __CLASS__ . '::save_taxonomy_custom_fields', 10, 2 );
 
 	}
 

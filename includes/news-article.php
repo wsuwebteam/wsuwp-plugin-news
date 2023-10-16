@@ -76,13 +76,15 @@ class News_Article {
 
 	public static function add_post_type_to_archive( $query ) {
 
-		if ( $query->is_main_query() && ! is_admin() && ( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) ) {
+		if ( is_main_query() && ! is_admin() && ( is_category() || is_tag() || defined( 'REST_REQUEST' ) ) ) {
 
 			$query_post_types = $query->get( 'post_type' );
 
 			if ( ! is_array( $query_post_types ) ) {
 
-				$query_post_types = array( $query_post_types );
+				$post_type = ( empty( $query_post_types ) ) ? 'post' : $query_post_types;
+
+				$query_post_types = array( $post_type );
 
 			}
 
@@ -91,6 +93,8 @@ class News_Article {
 			$query->set( 'post_type', $query_post_types );
 
 		}
+
+		//var_dump( $query );
 	}
 
 	public static function init() {
